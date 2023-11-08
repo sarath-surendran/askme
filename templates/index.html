@@ -1,0 +1,23 @@
+{% extends 'theme.html' %} {% load static %}
+
+{% block 'content' %}
+
+<div class="latest-questions p-5">
+    <h4>Latest Questions</h4>
+
+    {% if questions %}
+
+    {% for items in questions %}
+    <div class="my-custom-list">
+        <a class="my-custom-link" href="{% url 'show_question' items.id %}">
+            <i class="bi bi-question-square-fill my-custom-icon"></i>
+            <span class="my-custom-title">{{items.title}}</span>
+        </a>
+    </div>
+    
+    
+    {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock 'content' %}

@@ -1,0 +1,46 @@
+{% extends 'theme.html' %} {% load static %} {% block 'content' %}
+<div class="container">
+  <div class="p-4 d-flex justify-content-between">
+    <div>
+      <h2>{{question}}</h2>
+      <p class=" ">Asked by : {{user.name}}</p>
+    </div>
+
+    <p>
+      <a href="{% url 'answer' question.id %}" class="btn btn-outline-danger"
+        >Submit Your Answer</a
+      >
+    </p>
+  </div>
+  <p class="px-4" style="color: gray">Asked on: {{ date }}</p>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li class="alert alert-success text-center">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <div class="row">
+    <div class="col">
+      {% if answer %}{% for item in answer %}
+      <div class="show-answer bg-light m-3 p-3">
+          <p class="mb-4">{{ item.answer }}</p>
+          <div class="d-flex flex-column">
+              <p class="text-danger mb-2">Answered by: {{ item.user.name }}</p>
+              <p>
+                  <a href="{% url 'like' item.id %}" class="fs-4 {% if item.id in liked_answers %}bi-hand-thumbs-up-fill{% else %}bi-hand-thumbs-up{% endif %}"></a>
+                  {{ item.likes.count }} Likes
+              </p>
+          </div>
+      </div>
+  {% endfor %}
+   {% else %}
+      <h4 class="text-center">No answers found !</h4>
+
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock 'content' %}

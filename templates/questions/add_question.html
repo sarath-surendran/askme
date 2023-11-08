@@ -1,0 +1,22 @@
+{% extends 'theme.html' %} {% load static %}
+
+
+
+{% block 'content' %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <h3 class=" mt-5 text-center">"Ask Your Question"</h3>
+        <div class="col-md-6 mt-5">
+            <form method="post" class="text-center">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-lg btn-success" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock 'content' %}
